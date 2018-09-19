@@ -1,6 +1,7 @@
 package netlearning_test
 
 import (
+	"fmt"
 	// "fmt"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -29,5 +30,23 @@ var _ = Describe("Netlearning", func() {
 	It("look up addr", func() {
 		names, _ := LookupAddr("192.30.253.112")
 		Expect(len(names)).NotTo(Equal(0))
+	})
+
+	It("lookup cname", func() {
+		cname, _ := LookupCNAME("github.com")
+		fmt.Println(cname)
+		Expect(cname).NotTo(Equal(nil))
+	})
+
+	It("lookup ip", func() {
+		ips, _ := LookupIP("github.com")
+		fmt.Println(ips)
+		Expect(len(ips)).NotTo(Equal(0))
+	})
+
+	It("look up txt", func() {
+		txtResult, _ := LookupTXT("github.com")
+		fmt.Println(txtResult)
+		Expect(len(txtResult)).NotTo(Equal(0))
 	})
 })
